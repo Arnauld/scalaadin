@@ -10,7 +10,7 @@ scalacOptions ++= Seq("-unchecked", "-deprecation")
 
 seq((webSettings ++ vaadinSettings ++ Seq(
   jettyPort := 8081,
-  vaadinWidgetSet := "scalaadin.gwt.CombinedWidgetset",
+  vaadinWidgetSet := "scalaadin.gwt.CombinedWidgetset"
 )) :_*)
 
 retrieveManaged := true // remove this once plugins are working or i understand their layout
@@ -42,7 +42,7 @@ libraryDependencies ++= Seq(
   //test
   "org.scala-tools.testing" %% "specs" % "1.6.8" % "test",
   // vaadin + addons
-  "org.vaadin" % "vaadin" % "6.6.3",
+  "com.vaadin" % "vaadin" % "6.6.3",
   "org.vaadin.addons" % "sparklines" % "0.5",
   "org.vaadin.addons" % "gwt-graphics" % "0.9.7"
 )
