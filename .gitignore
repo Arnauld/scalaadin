@@ -14,3 +14,6 @@ project/boot
 project/target
 target
 logs
+
+#
+src/main/webapp/VAADIN/

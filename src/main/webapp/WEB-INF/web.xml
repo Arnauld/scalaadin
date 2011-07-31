@@ -20,6 +20,10 @@
             <param-name>application</param-name>
             <param-value>scalaadin.ScalaadinApplication</param-value>
         </init-param>
+        <init-param>
+            <param-name>widgetset</param-name>
+            <param-value>scalaadin.gwt.CombinedWidgetset</param-value>
+        </init-param>
     </servlet>
 
     <servlet-mapping>
