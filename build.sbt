@@ -39,12 +39,17 @@ libraryDependencies ++= Seq(
   "org.eclipse.jetty" % "jetty-webapp" % "7.4.2.v20110526" % "jetty;provided",
   "org.eclipse.jetty" % "jetty-servlet" % "7.4.2.v20110526" % "jetty;provided",
   "javax.servlet" % "servlet-api" % "2.5" % "provided->default",
+  // misc
+  "joda-time" % "joda-time" % "1.6.2",
   //test
   "org.scala-tools.testing" %% "specs" % "1.6.8" % "test",
   // vaadin + addons
   "com.vaadin" % "vaadin" % "6.6.3",
   "org.vaadin.addons" % "sparklines" % "0.5",
-  "org.vaadin.addons" % "gwt-graphics" % "0.9.7"
+  "org.vaadin.addons" % "gwt-graphics" % "0.9.7",
+  // apache shiro - security
+  "org.apache.shiro" % "shiro-core" % "1.1.0",
+  "org.apache.shiro" % "shiro-web" % "1.1.0"
 )
 
 resolvers ++= Seq(
