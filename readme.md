@@ -113,7 +113,7 @@ in `scalaadin.ScalaadinApplication#login`
             ...
         }
      }
-``
+```
 
 By doing so, *the login form can be written in Vaadin directly* while still using the security framework.
 
