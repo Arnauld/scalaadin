@@ -13,12 +13,17 @@ class ScalaadinRealm extends AuthorizingRealm {
     val username = upToken.getUsername
     checkNotNull(username, "Null usernames are not allowed by this realm.")
 
-    val password = if(username=="warp") "none" else null
+    // retrieve the 'real' user password
+    val password = passwordOf(username)
     checkNotNull(password, "No account found for user [" + username + "]")
 
-    new SimpleAuthenticationInfo(username, password.toCharArray, getName)
+    // return the 'real' info for username, security manager is then responsible
+    // for checking the token against the provided info
+    new SimpleAuthenticationInfo(username, password, getName)
   }
-
+  
+  // TODO: change this!
+  private def passwordOf(username:String):Array[Char] = if(username=="warp") "none".toCharArray else null
 
   def doGetAuthorizationInfo(principals: PrincipalCollection):AuthorizationInfo = {
     checkNotNull(principals, "PrincipalCollection method argument cannot be null.")
