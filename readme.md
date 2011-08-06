@@ -18,6 +18,22 @@ Vaadin Notes
 
 see notes in [SBT vaadin plugin](https://github.com/Arnauld/sbt-vaadin-plugin) and add the declared `widgetset` in `web.xml`
 
+    <servlet>
+        <servlet-name>ScalaadinApplication</servlet-name>
+        <servlet-class>com.vaadin.terminal.gwt.server.ApplicationServlet</servlet-class>
+        <init-param>
+            <description>Vaadin application class to start</description>
+            <param-name>application</param-name>
+            <param-value>scalaadin.ScalaadinApplication</param-value>
+        </init-param>
+        <init-param>
+            <param-name>widgetset</param-name>
+            <param-value>scalaadin.gwt.CombinedWidgetset</param-value>
+        </init-param>
+    </servlet>
+
+see also
+
 * [Robert Lally - Vaadin book code in scala](http://www.robertlally.com/blog/category/vaadin)
 
 Shiro Notes and integration with Vaadin
@@ -105,6 +121,8 @@ Libraries
 * [SBT vaadin plugin](https://github.com/Arnauld/sbt-vaadin-plugin)
 * [Vaadin](http://vaadin.com/home)
 * [Shiro](http://shiro.apache.org/)
+
+
 Later
 
 * [Cassandra](http://cassandra.apache.org/)
