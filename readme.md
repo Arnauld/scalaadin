@@ -18,6 +18,7 @@ Vaadin Notes
 
 see notes in [SBT vaadin plugin](https://github.com/Arnauld/sbt-vaadin-plugin) and add the declared `widgetset` in `web.xml`
 
+```xml
     <servlet>
         <servlet-name>ScalaadinApplication</servlet-name>
         <servlet-class>com.vaadin.terminal.gwt.server.ApplicationServlet</servlet-class>
@@ -31,6 +32,7 @@ see notes in [SBT vaadin plugin](https://github.com/Arnauld/sbt-vaadin-plugin) a
             <param-value>scalaadin.gwt.CombinedWidgetset</param-value>
         </init-param>
     </servlet>
+```
 
 see also
 
@@ -65,6 +67,7 @@ load the secured resources, i.e. it loads the application window in place of the
 
 in `scalaadin.ScalaadinApplication#login`
 
+```scala
     def login(username: String, password: String) {
         // Collect the subject's principals and credentials
         val token = new UsernamePasswordToken(username, password)
@@ -110,6 +113,7 @@ in `scalaadin.ScalaadinApplication#login`
             ...
         }
      }
+``
 
 By doing so, *the login form can be written in Vaadin directly* while still using the security framework.
 
