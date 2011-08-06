@@ -1,3 +1,5 @@
+[TOC]
+
 DEV Usage
 =========
 
@@ -49,7 +51,7 @@ cryptography, and session management.
 * [Shiro web](http://shiro.apache.org/web.html#Web-Custom%257B%257BWebEnvironment%257D%257DClass)
 * [Authentication in Vaadin Application](http://vaadin.com/wiki/-/wiki/Main/Authenticating%20Vaadin-based%20applications?p_r_p_185834411_title=Authenticating%20Vaadin-based%20applications)
 
-To "secure" the vaadin application, Shiro is plugged with a custom Realm (`ScalaadinRealm`).
+To "secure" the vaadin application, Shiro is plugged with a custom Realm (`scalaadin.security.shiro.ScalaadinRealm`).
 
 in `src/main/resources/shiro.ini`
 
@@ -110,7 +112,7 @@ in `scalaadin.ScalaadinApplication#login`
           case eae: ExcessiveAttemptsException =>
             ...
           case ae: AuthenticationException =>
-            ...
+           ...
         }
      }
 ```
