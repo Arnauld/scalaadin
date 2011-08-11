@@ -1,4 +1,4 @@
-package scalaadin.eav
+package scalaadin.plugin.eav
 
 class Entity(val namespace:Namespace, val entityName:String) {
   private var attributes = Map.empty[String,Attribute]

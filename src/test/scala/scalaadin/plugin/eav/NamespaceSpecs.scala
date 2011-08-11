@@ -1,4 +1,4 @@
-package scalaadin.eav
+package scalaadin.plugin.eav
 
 import org.specs.Specification
 

@@ -1,4 +1,4 @@
-package scalaadin.eav
+package scalaadin.plugin.eav
 
 import xml.NodeSeq
 import org.joda.time.{LocalTime, LocalDateTime, LocalDate}

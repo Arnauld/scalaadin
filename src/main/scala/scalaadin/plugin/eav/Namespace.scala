@@ -1,4 +1,4 @@
-package scalaadin.eav
+package scalaadin.plugin.eav
 
 case class Namespace(name: String, parent: Option[Namespace] = Some(Namespace.Root)) {
   // integrity

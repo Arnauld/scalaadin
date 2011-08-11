@@ -1,4 +1,4 @@
-package scalaadin.eav
+package scalaadin.plugin.eav
 
 class Attribute(val namespace:Namespace, val attributeName:String) {
 
