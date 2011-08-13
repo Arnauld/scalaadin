@@ -1,10 +1,14 @@
 package scalaadin.domain
 
+trait ExpressionResolver {
+  def resolve(expression: String): AnyRef
+}
+
 trait Context {
 
-  def getChannel(name:String): Channel[AnyRef]
+  def get(expression: String): Option[AnyRef]
 
-  def evaluate(expression: String): AnyRef
+  def getChannel(name:String): Channel[AnyRef]
 
   def log(channelName:String, message:String) {
     getChannel(channelName).publishPayload(message)

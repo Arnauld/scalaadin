@@ -1,5 +1,5 @@
 package scalaadin.domain
 
 class Environment {
-  def pluginList:List[Plugin] = Nil
+  var pluginList:List[Plugin] = Nil
 }

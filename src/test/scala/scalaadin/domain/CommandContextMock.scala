@@ -4,6 +4,10 @@ import java.lang.IllegalStateException
 
 trait CommandContextMock extends CommandContext {
 
+  var data = Map.empty[String, AnyRef]
+
+  def get(expression: String):  Option[AnyRef] = data.get(expression)
+
   var logEndpoint = new MemoryEndpoint[Log] {
     def name = "log"
   }
@@ -28,5 +32,4 @@ trait CommandContextMock extends CommandContext {
   def getChannel(channelName: String) = channels.get(channelName).getOrElse(
     throw new IllegalStateException("Unknown channel named <" + channelName + ">"))
 
-  def evaluate(expression: String) = expression
 }
