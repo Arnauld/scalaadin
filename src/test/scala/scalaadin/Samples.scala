@@ -13,6 +13,7 @@ object Samples {
       ("Family" -> "Mycroft Holmes"), //
       ("Nationality" -> "British")
     )
+    person.tags = Array("detective", "british", "watson")
     person
   }
 }
@@ -29,6 +30,7 @@ class Person(val name: String) {
   private var addr: Address = null
   var phones: List[PhoneNumber] = Nil
   var attributes = Map.empty[String, AnyRef]
+  var tags = Array.empty[String]
 
   def getAddress: Address = addr
 

@@ -2,6 +2,21 @@ package scalaadin.spath
 
 import util.parsing.combinator._
 
+/**
+ * <pre>
+ * stringLiteral := '"' [^"]* '"'
+ * identifier    := [a-zA-Z_][a-zA-Z_0-9-:]*
+ * integer         := [0-9]+
+ * pathFragment  := identifier ( '[' (stringLiteral|integer) ']' )*
+ * path          := pathFragment ( '.' pathFragment)*
+ * </pre>
+ *
+ * e.g.
+ * <pre>
+ *   plugins.list[1].attributes["firstName"]
+ * </pre>
+ *
+ */
 object SPathParser extends RegexParsers {
 
   def apply(input: String):ParseResult[SPath] = {
@@ -9,23 +24,25 @@ object SPathParser extends RegexParsers {
   }
 
   def stringLiteral: Parser[StrLiteral] = ("\"" + """([^"\p{Cntrl}\\]|\\[\\/bfnrt]|\\u[a-fA-F0-9]{4})*""" + "\"").r ^^ {
-    case x => StrLiteral(x.substring(1, x.length() - 1))
+    case x =>
+      // unquote
+      StrLiteral(x.substring(1, x.length() - 1))
   }
 
   def identifier: Parser[Identifier] = """[a-zA-Z_][a-zA-Z_0-9\-:]*""".r ^^ {
     case x => Identifier(x)
   }
 
-  def index: Parser[IntLiteral] = """\d+""".r ^^ {
+  def integer: Parser[IntLiteral] = """\d+""".r ^^ {
     case x => IntLiteral(x.toInt)
   }
 
-  def pathFragment: Parser[SPathFragment] = identifier ~ rep("[" ~> (stringLiteral | index) <~ "]") ^^ {
+  def pathFragment: Parser[SPathFragment] = identifier ~ rep("[" ~> (stringLiteral | integer) <~ "]") ^^ {
     case k ~ y  =>
       if(y.isEmpty)
-        AccessorRaw(k.value)
+        SPathFragment(k.value)
       else
-        AccessorWithIndices(k.value, y)
+        SPathFragment(k.value, y)
   }
 
   def path: Parser[SPath] = pathFragment ~ rep("." ~> pathFragment) ^^ {

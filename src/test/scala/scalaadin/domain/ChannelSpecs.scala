@@ -53,7 +53,7 @@ class ChannelSpecs extends Specification with Mocker {
         def name = "test-channel"
       }
       channel.publishPayload("Hello")
-      channel.publish(Message("Hello"))
+      channel.publish(Message("Hello")).isExpectation     // appears as passed if no exception is thrown
     }
     "dispatch message to all of its endpoints" in {
       val buffer = ListBuffer[String]()

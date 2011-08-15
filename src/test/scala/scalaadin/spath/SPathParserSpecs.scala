@@ -8,33 +8,33 @@ class SPathParserSpecs extends Specification {
   "spath" should {
     "parse identifier" in {
       val path = SPathParser("plugins").get
-      path.fragments must_== List(AccessorRaw("plugins"))
+      path.fragments must_== List(SPathFragment("plugins"))
     }
 
     "parse identifier with numerical indices" in {
       val path = SPathParser("plugins[17]").get
-      path.fragments must_== List(AccessorWithIndices("plugins", List(IntLiteral(17))))
+      path.fragments must_== List(SPathFragment("plugins", List(IntLiteral(17))))
     }
 
     "parse identifier with literal index" in {
       val path = SPathParser("""plugins["eav"]""").get
-      path.fragments must_== List(AccessorWithIndices("plugins", List(StrLiteral("eav"))))
+      path.fragments must_== List(SPathFragment("plugins", List(StrLiteral("eav"))))
     }
 
     "parse two-sized path with indices" in {
       val path = SPathParser("plugins.list[3]").get
       path.fragments must_== List(//
-        AccessorRaw("plugins"),//
-        AccessorWithIndices("list",List(IntLiteral(3)))//
+        SPathFragment("plugins"),//
+        SPathFragment("list",List(IntLiteral(3)))//
       )
     }
 
     "parse complex path with multiple indices" in {
       val path = SPathParser("plugins.list[3].attributes[1][7]").get
       path.fragments must_== List(//
-        AccessorRaw("plugins"),//
-        AccessorWithIndices("list", List(IntLiteral(3))),//
-        AccessorWithIndices("attributes", List(IntLiteral(1), IntLiteral(7)))//
+        SPathFragment("plugins"),//
+        SPathFragment("list", List(IntLiteral(3))),//
+        SPathFragment("attributes", List(IntLiteral(1), IntLiteral(7)))//
       )
     }
   }

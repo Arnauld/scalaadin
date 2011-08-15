@@ -24,7 +24,7 @@ class SPathFragmentSpecs extends Specification {
       val fragment = SPathFragment("num")
       fragment.select(phone) must_== Some("001-002003-004")
     }
-    "handle map access through indice" in {
+    "handle map access through string key" in {
       val person = newPerson
       val fragment = SPathFragment("attributes", List(StrLiteral("Occupation")))
       fragment.select(person) must_== Some("Consulting detective")
@@ -33,6 +33,11 @@ class SPathFragmentSpecs extends Specification {
       val person = newPerson
       val fragment = SPathFragment("phones", List(IntLiteral(1)))
       fragment.select(person) must_== Some(PhoneNumber("0100-0002"))
+    }
+    "handle array access through indice" in {
+      val person = newPerson
+      val fragment = SPathFragment("tags", List(IntLiteral(2)))
+      fragment.select(person) must_== Some("watson")
     }
     "handle property using java bean convention" in {
       val person = newPerson

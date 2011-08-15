@@ -8,6 +8,8 @@ object Channel {
   val LOG_ERROR = "log-error"
   val DATA      = "data"
 
+  lazy val logger = org.slf4j.LoggerFactory.getLogger(classOf[Channel[_]])
+
   def apply[T](channelName:String, endpoint:Endpoint[T]):Channel[T] = {
     val channel = new Channel[T] {
       def name = channelName
@@ -18,7 +20,8 @@ object Channel {
 }
 
 trait Channel[T] extends Endpoint[T] {
-  private lazy val logger = org.slf4j.LoggerFactory.getLogger(classOf[Channel[T]])
+  import Channel._
+  
   var endpoints:List[Endpoint[T]] = Nil
 
   def addEndpoint(endpoint:Endpoint[T]):Channel[T] = {
